@@ -1,0 +1,238 @@
+body, html {
+	margin:0;
+	overflow:hidden;
+}
+#log {
+	width:100px;
+	top:100px;
+	position:absolute;
+	bottom:0;
+	right:0;
+	background:#eaeaea;
+	padding:20px;
+	z-index:7;
+}
+#bodyOverlay {
+	transition:background-color 0.3s ease;
+}
+#menuWrap.active #bodyOverlay {
+	background:rgba(0,0,0,0.8);
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	bottom:0;
+	right:0;
+	z-index:9;
+}
+#menuAnimate {
+	top:10px;
+	right:10px;
+	width:50px;
+	height:50px;
+	position:fixed;
+	
+	overflow:hidden;
+	z-index:10;
+	
+	border-radius:100%;
+	
+	transition:all 0.3s ease;
+}
+#menuWrap.active #menuAnimate {
+	width:350px;
+	height:100%;
+	
+	animation: menuIn 0.5s;
+	border-radius:0;top:0;right:0;
+}
+
+@keyframes menuIn {
+	0% {border-radius:100%;}
+	30% {border-radius:0;border-bottom-left-radius:100%;top:0;right:0;}
+	100% {border-radius:0;}
+}
+
+
+#menu {
+	background:#ccc;
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	width:350px;
+	
+	display:none;
+	padding:0;
+	overflow:auto;
+}
+#menuWrap.active #menu {
+	display:block;
+}
+#showMenuBtn{
+	position:fixed;
+	top:10px;
+	right:10px;
+	width:50px;
+	height:50px;
+	background:#ddd;
+	border-radius:25px;
+	z-index:11;
+}
+#menuWrap.active #showMenuBtn {
+	background:#f00;
+}
+#menu .btn {
+	display:block;
+	padding:5px 10px;
+	background:#000;
+	color:#fff;
+	margin:2px 0;
+	cursor:pointer;
+}
+#menu .newPuzzle.btn {
+	line-height:60px;
+	padding:0;
+}
+#menu .newPuzzle.btn .preview {
+	display:block;
+	float:left;
+	width:60px;
+	height:60px;
+	background-position:center center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	margin:0 20px 0 0;
+}
+#menu .btn:hover {
+	background:#f00;
+}
+#menu #puzzleExample {
+	padding-top:100%;
+	width:100%;
+	background:#ccc center center no-repeat;
+	background-size:cover;
+	position:relative;
+}
+#menu #puzzleExample #puzzleOptions {
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	padding:60px 10px 20px;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.65+100 */
+	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+}
+#menu #resetPuzzle {
+	
+}
+#loading {
+	display:none;
+}
+#loading.active {
+	display:block;
+	position:absolute;
+	display: flex;
+	justify-content: center; /* align horizontal */
+	align-items: center; /* align vertical */
+	
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	bottom:0;
+	right:0;
+	z-index:11;
+	
+	color:#fff;
+	background:rgba(0,0,0,0.8);
+}
+
+#puzzlePieces {
+	height:100vh;
+	max-height:100vh;
+
+	width:calc(100vw - 100vh - 50px);
+	max-width:calc(100vw - 100vh - 50px);
+	
+	
+	float:right;
+	
+	box-sizing:border-box;
+
+}
+.puzzlePiece {
+	width:100px;
+	height:100px;
+	background:#f00;
+	
+	z-index:1;
+	position:absolute;
+
+}
+
+.puzzlePiece.grey {
+	background:#ddd;
+}
+#puzzleBoard {
+	width:600px;
+	height:600px;
+	
+	height:100vh;
+	width:100vh;
+	box-sizing:border-box;
+	
+	float:left;
+	position:relative;
+}
+#puzzleBoard .rasterLine {
+	position:absolute;
+	height:1px;
+	width:100%;
+	background:#000;
+	top:0px;
+	left:0px;
+	z-index:2;
+}
+#puzzleBoard .rasterLine.vert {
+	width:1px;
+	height:100%;
+}
+#puzzleBoard.finished .rasterLine {
+	display:none;
+}
+
+#puzzleBoardBg {
+	background-color:#eaeaea;
+	background-repeat:no-repeat;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	position:absolute;
+	opacity:0.1;
+}
+
+
+.fdrag.active {
+	background:#000;
+	z-index:3;
+	position:absolute;
+}
+
+.puzzlePiece.positioned {
+	position:absolute;
+	opacity:0.8;
+	
+	transition:all 0.3s ease;
+}
+.puzzlePiece.wrong {
+	transition:all 0.3s ease;
+}
+.puzzlePiece.positioned.correct, .puzzlePiece.positioned.active {
+	opacity:1;
+}
